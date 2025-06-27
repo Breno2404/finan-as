@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { db } from './firebase';
+import { db } from './firebase/firebase';
 import {
   collection, getDocs, addDoc,
   deleteDoc, updateDoc, doc,
@@ -237,7 +237,6 @@ function App() {
                 onClick={() => handleExcluir(t.id)}
                 className="text-red-600"
               >
-                🗑️
               </button>
             </div>
           </li>
