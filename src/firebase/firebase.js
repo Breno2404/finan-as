@@ -2,12 +2,13 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "SEU_DOMINIO.firebaseapp.com",
-  projectId: "SEU_PROJECT_ID",
-  storageBucket: "SEU_BUCKET",
-  messagingSenderId: "SEU_SENDER_ID",
-  appId: "SEU_APP_ID"
+  apiKey: "AIzaSyD4bn2TqoECdCGpWyvw7T4dGJLnxIpH6cc",
+  authDomain: "financas-dc789.firebaseapp.com",
+  projectId: "financas-dc789",
+  storageBucket: "financas-dc789.firebasestorage.app",
+  messagingSenderId: "524460577144",
+  appId: "1:524460577144:web:084786969dcc0a41a4388d",
+  measurementId: "G-KNDPMMRMWC"
 };
 
 const app = initializeApp(firebaseConfig);
