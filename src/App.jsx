@@ -113,7 +113,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-900 text-white p-4 max-w-3xl mx-auto">
       <h1 className="text-3xl font-bold mb-4">Controle de Transações</h1>
-
+      
       {/* Filtros */}
       <div className="mb-4 flex flex-col sm:flex-row sm:justify-center sm:gap-2 gap-4 cursor-pointer">
         <select
@@ -147,7 +147,7 @@ function App() {
       {/* Botão para abrir o Modal */}
       <button
         onClick={() => setModalAberto(true)}
-        className="bg-blue-600 text-white p-2 rounded w-full mb-4"
+        className="bg-blue-600 text-white p-2 rounded w-full mb-4 cursor-pointer"
       >
         Adicionar Transação
       </button>
@@ -214,19 +214,15 @@ function App() {
                 required
               />
 
-              <div className="relative w-full">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-white">R$</span>
-                <input
-                  type="number"
-                  step="0.01"
-                  value={valor}
-                  onChange={(e) => setValor(e.target.value)}
-                  placeholder="Valor"
-                  className="pl-10 pr-3 py-2 bg-gray-800 border border-gray-600 text-white rounded w-full"
-                  required
-                />
-              </div>
-
+              <input
+                type="number"
+                step="0.01"
+                value={valor}
+                onChange={(e) => setValor(e.target.value)}
+                placeholder="Valor"
+                className="bg-gray-700 text-white p-2 rounded w-full"
+                required
+              />
 
               <select
                 value={categoria}
@@ -253,13 +249,13 @@ function App() {
                     resetForm();
                     setModalAberto(false);
                   }}
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded cursor-pointer"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
-                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded cursor-pointer"
                 >
                   {editandoId ? 'Salvar' : 'Adicionar'}
                 </button>
@@ -272,20 +268,18 @@ function App() {
       {/* Confirmação de Exclusão */}
       {confirmarExclusao && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 bg-opacity-50">
-          <div className="bg-gray-600 p-6 rounded-lg shadow-lg text-white">
+          <div className="bg-red-700 p-6 rounded-lg shadow-lg text-white">
             <h2 className="text-xl font-bold mb-4">Tem certeza que deseja excluir esta transação?</h2>
             <div className="flex justify-between mt-4">
               <button
                 onClick={() => setConfirmarExclusao(null)}
-                className="bg-red-700 hover:bg-red-600 text-white px-4 py-2 rounded cursor-pointer
-                "
+                className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded cursor-pointer"
               >
                 Cancelar
               </button>
               <button
                 onClick={confirmarExclusaoTransacao}
-                className="bg-green-700 hover:bg-green-600 text-white px-4 py-2 rounded cursor-pointer
-                "
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded cursor-pointer"
               >
                 Confirmar
               </button>
