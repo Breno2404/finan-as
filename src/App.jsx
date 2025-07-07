@@ -79,7 +79,7 @@ function App() {
     setValor(t.valor);
     setCategoria(t.categoria);
     setTipo(t.tipo);
-    setDataHora(t.dataHora.toISOString().slice(0, 16));
+    setDataHora(new Date(t.dataHora.seconds * 1000).toISOString().slice(0, 16));
     setEditandoId(t.id);
   };
 
@@ -99,149 +99,146 @@ function App() {
   const saldo = totais.receitas - totais.despesas;
 
   return (
-    <div className="p-4 max-w-xl mx-auto">
+    <div className="min-h-screen bg-gray-900 text-white p-4 max-w-3xl mx-auto">
       <h1 className="text-3xl font-bold mb-4">Controle de Transações</h1>
+      <br />
 
-      {/* Filtros */}
-      <div className="mb-4 space-x-2">
-        <select
-          value={filtro.tipo}
-          onChange={(e) => setFiltro({ ...filtro, tipo: e.target.value })}
-          className="border p-2"
-        >
-          <option value="">Todos</option>
-          {tipos.map((t) => (
-            <option key={t} value={t}>
-              {t}
-            </option>
-          ))}
-        </select>
-        <input
-          type="month"
-          value={filtro.mes}
-          onChange={(e) => setFiltro({ ...filtro, mes: e.target.value })}
-          className="border p-2"
-        />
-        <select
-          value={filtro.categoria}
-          onChange={(e) => setFiltro({ ...filtro, categoria: e.target.value })}
-          className="border p-2"
-        >
-          <option value="">Todas</option>
-          {categorias.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
-        </select>
-      </div>
-
+      {/* Fils */}
+      <div className="mb-4 flex flex-wrap justify-center gap-2 cursor-pointer
+">
+  <select
+    value={filtro.tipo}
+    onChange={(e) => setFiltro({ ...filtro, tipo: e.target.value })}
+    className="bg-gray-800 border border-gray-600 text-white p-2 rounded cursor-pointer
+    "
+  >
+    <option value="">Todos</option>
+    {tipos.map((t) => (
+      <option key={t} value={t}>{t}</option>
+    ))}
+  </select>
+  <input
+    type="month"
+    value={filtro.mes}
+    onChange={(e) => setFiltro({ ...filtro, mes: e.target.value })}
+    className="bg-gray-800 border border-gray-600 text-white p-2 rounded cursor-pointer
+    "
+  />
+  <select
+    value={filtro.categoria}
+    onChange={(e) => setFiltro({ ...filtro, categoria: e.target.value })}
+    className="bg-gray-800 border border-gray-600 text-white p-2 rounded cursor-pointer
+    "
+  >
+    <option value="">Todas</option>
+    {categorias.map((c) => (
+      <option key={c} value={c}>{c}</option>
+    ))}
+  </select>
+</div>
       {/* Formulário */}
-      <form onSubmit={handleSubmit} className="mb-6 space-y-2">
-        <select
-          value={tipo}
-          onChange={(e) => setTipo(e.target.value)}
-          className="border p-2 w-full"
-        >
-          {tipos.map((t) => (
-            <option key={t} value={t}>
-              {t}
-            </option>
-          ))}
-        </select>
-        <input
-          placeholder="Descrição"
-          value={descricao}
-          onChange={(e) => setDescricao(e.target.value)}
-          className="border p-2 w-full"
-          required
-        />
-        <input
-          type="number"
-          step="0.01"
-          placeholder="Valor"
-          value={valor}
-          onChange={(e) => setValor(e.target.value)}
-          className="border p-2 w-full"
-          required
-        />
-        <select
-          value={categoria}
-          onChange={(e) => setCategoria(e.target.value)}
-          className="border p-2 w-full"
-        >
-          {categorias.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
-        </select>
-        <input
-          type="datetime-local"
-          value={dataHora}
-          onChange={(e) => setDataHora(e.target.value)}
-          className="border p-2 w-full"
-          required
-        />
-        <button
-          type="submit"
-          className={`w-full p-2 text-white ${
-            editandoId ? 'bg-yellow-600' : 'bg-blue-600'
-          }`}
-        >
-          {editandoId ? 'Salvar Edição' : 'Adicionar'}
-        </button>
-      </form>
+      <form onSubmit={handleSubmit} className="mb-6 space-y-3">
+  <select
+    value={tipo}
+    onChange={(e) => setTipo(e.target.value)}
+    className="bg-gray-800 border border-gray-600 text-white p-2 rounded w-full"
+  >
+    {tipos.map((t) => (
+      <option key={t} value={t}>{t}</option>
+    ))}
+  </select>
+  <input
+    placeholder="Descrição"
+    value={descricao}
+    onChange={(e) => setDescricao(e.target.value)}
+    className="bg-gray-800 border border-gray-600 text-white p-2 rounded w-full"
+    required
+  />
+  <input
+    type="number"
+    step="0.01"
+    placeholder="Valor"
+    value={valor}
+    onChange={(e) => setValor(e.target.value)}
+    className="bg-gray-800 border border-gray-600 text-white p-2 rounded w-full"
+    required
+  />
+  <select
+    value={categoria}
+    onChange={(e) => setCategoria(e.target.value)}
+    className="bg-gray-800 border border-gray-600 text-white p-2 rounded w-full"
+  >
+    {categorias.map((c) => (
+      <option key={c} value={c}>{c}</option>
+    ))}
+  </select>
+  <input
+    type="datetime-local"
+    value={dataHora}
+    onChange={(e) => setDataHora(e.target.value)}
+    className="bg-gray-800 border border-gray-600 text-white p-2 rounded w-full"
+    required
+  />
+  <button
+    type="submit"
+    className={`w-full p-2 rounded text-white transition duration-200 cursor-pointer
+    ${
+      editandoId ? 'bg-yellow-600 hover:bg-yellow-700' : 'bg-blue-600 hover:bg-blue-700 '
+    }`}
+  >
+    {editandoId ? 'Salvar Edição' : 'Adicionar'}
+  </button>
+</form>
+
 
       {/* Totais e Saldo */}
-      <div className="mb-4 space-y-2">
-        <div>
-          Total Receitas: <strong>R$ {totais.receitas.toFixed(2)}</strong>
-        </div>
-        <div>
-          Total Despesas: <strong>R$ {totais.despesas.toFixed(2)}</strong>
-        </div>
-        <div>
-          Saldo Atual: <strong>R$ {saldo.toFixed(2)}</strong>
-        </div>
-      </div>
+      <div className="mb-6 space-y-2 bg-gray-800 p-4 rounded shadow">
+  <div>Total Receitas: <strong className="text-green-400">R$ {totais.receitas.toFixed(2)}</strong></div>
+  <div>Total Despesas: <strong className="text-red-400">R$ {totais.despesas.toFixed(2)}</strong></div>
+  <div>Saldo Atual: <strong className={saldo >= 0 ? 'text-green-300' : 'text-red-300'}>
+    R$ {saldo.toFixed(2)}
+  </strong></div>
+</div>
+
 
       {/* Lista de Transações */}
       <ul className="space-y-2">
-        {transacoes.map((t) => (
-          <li
-            key={t.id}
-            className="p-2 flex justify-between items-center border rounded"
-            style={{
-              backgroundColor: t.tipo === 'Receita' ? '#ddffdd' : '#ffdddd',
-            }}
-          >
-            <div>
-              <div className="font-semibold">{t.descricao}</div>
-              <div className="text-sm">
-                {t.categoria} •{' '}
-                {new Date(t.dataHora.seconds * 1000).toLocaleString()}
-              </div>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="font-bold">
-                {t.tipo === 'Receita' ? '+' : '-'}R$ {t.valor.toFixed(2)}
-              </span>
-              <button
-                onClick={() => handleEditar(t)}
-                className="text-yellow-600"
-              >
-                ✎
-              </button>
-              <button
-                onClick={() => handleExcluir(t.id)}
-                className="text-red-600"
-              >
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+  {transacoes.map((t) => (
+    <li
+      key={t.id}
+      className={`p-4 rounded flex justify-between items-center transition duration-200 shadow-md ${
+        t.tipo === 'Receita' ? 'bg-green-900 hover:bg-green-800' : 'bg-red-900 hover:bg-red-800'
+      }`}
+    >
+      <div>
+        <div className="font-semibold">{t.descricao}</div>
+        <div className="text-sm text-gray-300">
+          {t.categoria} • {new Date(t.dataHora.seconds * 1000).toLocaleString()}
+        </div>
+      </div>
+      <div className="flex items-center space-x-2">
+        <span className="font-bold text-white">
+          {t.tipo === 'Receita' ? '+' : '-'}R$ {t.valor.toFixed(2)}
+        </span>
+        <button
+          onClick={() => handleEditar(t)}
+          className="text-yellow-400 hover:text-yellow-300 border border-yellow-500 px-2 py-1 rounded cursor-pointer
+          "
+        >
+          ✎
+        </button>
+        <button
+          onClick={() => handleExcluir(t.id)}
+          className="text-red-400 hover:text-red-300 border border-red-500 px-2 py-1 rounded cursor-pointer
+          "
+        >
+          🗑️
+        </button>
+      </div>
+    </li>
+  ))}
+</ul>
+
     </div>
   );
 }
