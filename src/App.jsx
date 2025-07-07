@@ -268,18 +268,18 @@ function App() {
       {/* Confirmação de Exclusão */}
       {confirmarExclusao && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 bg-opacity-50">
-          <div className="bg-red-700 p-6 rounded-lg shadow-lg text-white">
+          <div className="bg-gray-700 p-6 rounded-lg shadow-lg text-white">
             <h2 className="text-xl font-bold mb-4">Tem certeza que deseja excluir esta transação?</h2>
             <div className="flex justify-between mt-4">
               <button
                 onClick={() => setConfirmarExclusao(null)}
-                className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded cursor-pointer"
+                className="bg-red-700 hover:bg-red-600 text-white px-4 py-2 rounded cursor-pointer"
               >
                 Cancelar
               </button>
               <button
                 onClick={confirmarExclusaoTransacao}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded cursor-pointer"
+                className="bg-green-700 hover:bg-green-600 text-white px-4 py-2 rounded cursor-pointer"
               >
                 Confirmar
               </button>
